@@ -1,0 +1,19 @@
+enum RiskTolerance {
+  LOW     @map("LOW")
+  MEDIUM  @map("MEDIUM")
+  HIGH    @map("HIGH")
+}
+
+
+
+model InsuranceRequest {
+  id             Int      @id @default(autoincrement())
+  age            Int
+  income         Float
+  dependents     Int
+  riskTolerance  RiskTolerance
+  recommendation Json
+  createdAt      DateTime @default(now())
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+}
